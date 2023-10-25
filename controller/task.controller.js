@@ -29,7 +29,7 @@ export const taskController = {
         status: req.query.status,
       },
     });
-    res.render("pages/index", { tasks });
+    res.render("pages/task-list", { tasks });
   },
 
   // membuat halaman todo
@@ -74,7 +74,7 @@ export const taskController = {
         },
       }
     );
-    res.redirect("/");
+    res.redirect("/tasks");
   },
 
   // menghapus data
@@ -84,7 +84,7 @@ export const taskController = {
         id: req.body.id,
       },
     });
-    res.redirect("/");
+    res.redirect("/tasks");
   },
 
   // altivitas menyimpan todo baru
@@ -107,7 +107,7 @@ export const taskController = {
       console.error("Failed to create a new record : ", error);
     });
 
-    res.redirect("/");
+    res.redirect("/tasks");
     // res.send({data:req.body});
   },
 };

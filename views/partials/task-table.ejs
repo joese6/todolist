@@ -3,7 +3,7 @@
     <th scope="col">Nama</th>
     <th scope="col">Deskripsi</th>
     <th scope="col">
-      <form action="/" method="get">
+      <form action="/tasks" method="get">
         <div style="display: flex">
           Status &nbsp;
           <select name="status">
@@ -39,10 +39,12 @@
 
     <% } %>
     <td><%= task.deadline %></td>
-    <td><a href="/update/<%= task.id %>" class="btn btn-primary">Edit</a></td>
+    <td>
+      <a href="/tasks/update/<%= task.id %>" class="btn btn-primary">Edit</a>
+    </td>
     <!-- <td><a href="/delete/<%= task.id %>" class="btn btn-danger">Hapus</a></td> -->
     <td>
-      <form action="/delete" method="post">
+      <form action="/tasks/delete" method="post">
         <input type="hidden" name="id" required value="<%= task.id %>" />
         <button
           type="submit"

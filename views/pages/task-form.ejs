@@ -5,19 +5,19 @@
   </head>
   <body class="container mt-2">
     <div style="display: flex">
-      <a href="/" class="btn btn-warning">Back</a>
+      <a href="/tasks" class="btn btn-warning">Back</a>
       <h3 style="margin: 0 16px"><%= title %></h3>
     </div>
     <br />
 
     <form 
       <% if(title=='Create Task'){%>
-      action="/create"
+      action="/tasks/create"
       <%} else {%>
-        action="/update"
+        action="/tasks/update"
       <%} %>
     
-    action="/create" method="post" style="max-width: 500px">
+    action="/tasks/create" method="post" style="max-width: 500px">
     <% if(title=='Update Task'){ %>
         <input type="hidden" name="id" required value="<%= task.id %>">
         <% } %>
