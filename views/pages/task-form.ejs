@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../partials/head');%>
+  </head>
+  <body class="container mt-2">
+    <div style="display: flex">
+      <a href="/" class="btn btn-warning">Back</a>
+      <h3 style="margin: 0 16px"><%= title %></h3>
+    </div>
+    <br />
+
+    <form 
+      <% if(title=='Create Task'){%>
+      action="/create"
+      <%} else {%>
+        action="/update"
+      <%} %>
+    
+    action="/create" method="post" style="max-width: 500px">
+    <% if(title=='Update Task'){ %>
+        <input type="hidden" name="id" required value="<%= task.id %>">
+        <% } %>
+      <div class="mb-3">
+        <label class="form-label">* Nama</label>
+        <input type="text" class="form-control" name="name" required <%
+        if(title=='Update Task'){%> value="<%= task.name %>" <%} %> />
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Deskripsi</label>
+        <input type="text" class="form-control" name="description" <%
+        if(title=='Update Task'){%> value="<%= task.description %>" <%} %> />
+      </div>
+      <div class="mb-3">
+        <label class="form-label">* Status</label>
+        <select name="status" class="form-control">
+          <% if(title=='Update Task'){%>
+          <option value="<%= task.status %>"><%= task.status %></option>
+          <%} %>
+          <option value="Todo">Todo</option>
+          <option value="Doing">Doing</option>
+          <option value="Done">Done</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Deadline</label>
+        <input type="datetime-local" class="form-control" name="deadline" <%
+        if(title=='Update Task'){%> value="<%= task.deadline %>" <%} %> />
+      </div>
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </body>
+</html>

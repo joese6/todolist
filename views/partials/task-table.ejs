@@ -1,0 +1,59 @@
+<thead>
+  <tr>
+    <th scope="col">Nama</th>
+    <th scope="col">Deskripsi</th>
+    <th scope="col">
+      <form action="/" method="get">
+        <div style="display: flex">
+          Status &nbsp;
+          <select name="status">
+            <option value="All">All</option>
+            <option value="Todo">Todo</option>
+            <option value="Doing">Doing</option>
+            <option value="Done">Done</option></select
+          >&nbsp;
+          <button type="submit" class="btn btn-outline-secondary">
+            Filter
+          </button>
+        </div>
+      </form>
+    </th>
+    <th scope="col">Deadline</th>
+    <th scope="col">Aksi</th>
+  </tr>
+</thead>
+<tbody>
+  <% tasks.forEach(task => { %>
+
+  <tr>
+    <td><%= task.name %></td>
+    <td><%= task.description %></td>
+    <% if(task.status=="Doing") {%>
+    <td><span class="badge bg-warning"><%= task.status %></span></td>
+    <% }else if(task.status=="Todo"){ %>
+    <td><span class="badge bg-info"><%= task.status %></span></td>
+    <% }else if(task.status=="Done"){ %>
+    <td><span class="badge bg-success"><%= task.status %></span></td>
+    <% }else{ %>
+    <td><span class="badge bg-secondary"><%= task.status %></span></td>
+
+    <% } %>
+    <td><%= task.deadline %></td>
+    <td><a href="/update/<%= task.id %>" class="btn btn-primary">Edit</a></td>
+    <!-- <td><a href="/delete/<%= task.id %>" class="btn btn-danger">Hapus</a></td> -->
+    <td>
+      <form action="/delete" method="post">
+        <input type="hidden" name="id" required value="<%= task.id %>" />
+        <button
+          type="submit"
+          class="btn btn-danger"
+          onclick="return confirm('Apakah data <%= task.name %>  dihapus??')"
+        >
+          Hapus
+        </button>
+      </form>
+    </td>
+  </tr>
+
+  <% }); %>
+</tbody>
