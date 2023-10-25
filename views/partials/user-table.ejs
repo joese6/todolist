@@ -1,0 +1,36 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Nama</th>
+      <th scope="col">Email</th>
+      <th scope="col">Aksi</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% users.forEach(user => { %>
+
+    <tr>
+      <td><%= user.name %></td>
+      <td><%= user.email %></td>
+      <td>
+        <a class="btn btn-primary" href="/users/update/<%= user.id %>"
+          >Update</a
+        >
+      </td>
+      <td>
+        <form action="/users/delete" method="post">
+          <input type="hidden" name="id" required value="<%= user.id %>" />
+          <button
+            class="btn btn-danger"
+            type="submit"
+            onclick="return confirm('Apakah anda yakin?')"
+          >
+            Delete
+          </button>
+        </form>
+      </td>
+    </tr>
+
+    <% }); %>
+  </tbody>
+</table>

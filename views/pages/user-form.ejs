@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+ <%- include('../partials/head'); %>
+ <body class="container">
+   <div style="display: flex">
+     <a class="btn btn-warning" href="/users"><- Back </a>
+     <h3 style="margin: 0 16px"><%= title %></h3>
+   </div>
+   <br />
+
+   <form
+   <% if(title=='Create User') {%>
+    action="/users/create"
+    <% } else { %>
+     action="/users/update"
+     <% } %>
+
+
+     method="post"
+     style="max-width: 500px">
+
+    
+     <% if(title=='Update User') {%>
+       <input type="hidden" name="id" required value="<%= user.id %>" />
+     <% } %>
+
+     <div class="mb-3">
+       <label for="name" class="form-label">* Nama</label>
+
+       <input type="text" class="form-control" name="name" required <%
+       if(title=='Update User'){ %> value="<%= user.name %>" <% } %> />
+     </div>
+
+     <div class="mb-3">
+       <label for="name" class="form-label">* Email</label>
+
+       <input type="text" class="form-control" name="email" required <%
+       if(title=='Update User'){ %> value="<%= user.email %>" <% } %> />
+     </div>
+
+     <div class="mb-3">
+       <label for="name" class="form-label">* Passowrd</label>
+
+       <input type="text" class="form-control" name="password" <%
+       if(title=='Update User'){ %> value="<%= user.password %>" <% } %> />
+     </div>
+
+     <button type="submit" class="btn btn-primary">Submit</button>
+   </form>
+ </body>
+</html>
+
+
+
