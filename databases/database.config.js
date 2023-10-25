@@ -1,18 +1,12 @@
 // Configuration
-import Sequelize from "sequelize"
+import Sequelize from "sequelize";
 
 export const sequelize = new Sequelize(
- 'todo_list',
- 'root',
- '',
+  "todo_list2023",
+  "todo_list2023",
+  "todo_list2023",
   {
-	host: 'localhost',
-	dialect: 'mysql'
+    host: "db4free.net",
+    dialect: "mysql",
   }
 );
-
-
-
-
- 
-
