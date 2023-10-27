@@ -7,6 +7,8 @@ import { authController } from "./controller/auth.controller.js";
 import session from "express-session";
 import { authMiddleware } from "./middleware/auth.middleware.js";
 import { userController } from "./controller/user.controller.js";
+import cron from "node-cron";
+import { taskScheduler } from "./scheduler/task.scheduler.js";
 
 const app = express();
 
@@ -43,6 +45,8 @@ app.get("/tasks/update/:id", taskController.updatePage);
 app.post("/tasks/create", taskController.create);
 app.post("/tasks/update", taskController.update);
 app.post("/tasks/delete", taskController.delete);
+
+cron.schedule("* * * * * *", taskScheduler.reminderDeadline);
 
 app.listen(3000, () => {
   console.log("port 3000");
