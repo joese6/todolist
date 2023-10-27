@@ -29,6 +29,7 @@ export const taskController = {
     const tasks = await Task.findAll({
       where: req.query.status && {
         status: req.query.status,
+        // user_id:req.session.user.id,
       },
     });
     res.render("pages/task-list", { tasks });
@@ -69,6 +70,7 @@ export const taskController = {
         description: req.body.description,
         status: req.body.status,
         deadline: req.body.deadline || null,
+        // user_id: req.session.user.id
       },
       {
         where: {
